@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function saveToGoogleSheets() {
         if (!isMatchEnded) return;
 
-        const scriptUrl = "YOUR_SCRIPT_URL"; // استبدل برابط النشر
+        const scriptUrl = "https://docs.google.com/spreadsheets/d/1s2fZTT7YPg1fM6jY7qfRza1sNj7kZcwpWJwQBto11_A/edit?usp=sharing"; // استبدل برابط النشر
 
         const data = {
             teamA: {
