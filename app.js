@@ -417,6 +417,112 @@ document.addEventListener('DOMContentLoaded', function () {
         clearInterval(timerInterval);
         timerInterval = null;
     });
+    function doGet(e) {
+        return HtmlService.createHtmlOutput("<h1>استقبال بيانات المباراة</h1>");
+    }
+
+    function doPost(e) {
+        try {
+            const data = JSON.parse(e.postData.contents);
+            const ss = SpreadsheetApp.getActiveSpreadsheet();
+            const sheet = ss.getSheetByName("المباريات") || ss.insertSheet("المباريات");
+
+            // ترتيب البيانات
+            const matchData = [
+                new Date(),
+                data.teamA.name,
+                data.teamA.score,
+                data.teamB.name,
+                data.teamB.score,
+                JSON.stringify(data.events),
+                JSON.stringify(data.playersA),
+                JSON.stringify(data.playersB)
+            ];
+
+            // إضافة العناوين إذا كانت الصفحة فارغة
+            if (sheet.getLastRow() === 0) {
+                const headers = [
+                    "التاريخ",
+                    "الفريق الأول",
+                    "الأهداف",
+                    "الفريق الثاني",
+                    "الأهداف",
+                    "الأحداث",
+                    "لاعبين الفريق الأول",
+                    "لاعبين الفريق الثاني"
+                ];
+                sheet.appendRow(headers);
+            }
+
+            sheet.appendRow(matchData);
+
+            return ContentService.createTextOutput(JSON.stringify({ success: true }))
+                .setMimeType(ContentService.MimeType.JSON);
+        } catch (err) {
+            return ContentService.createTextOutput(JSON.stringify({ success: false, error: err.message }))
+                .setMimeType(ContentService.MimeType.JSON);
+        }
+    }
+
+    function getScriptUrl() {
+        return ScriptApp.getService().getUrl();
+    }
+    async function saveToGoogleSheets() {
+        const scriptUrl = "YOUR_SCRIPT_URL"; // استبدل برابط النشر
+
+        const data = {
+            teamA: {
+                name: teams.A.name,
+                score: teams.A.score,
+            },
+            teamB: {
+                name: teams.B.name,
+                score: teams.B.score,
+            },
+            events: Array.from(document.querySelectorAll('#eventsList .event')).map(event => ({
+                time: event.querySelector('.event-time').textContent,
+                text: event.querySelector('.event-text').textContent
+            })),
+            playersA: teams.A.players.map(p => ({
+                name: p.name,
+                goals: p.goals,
+                yellowCards: p.yellowCards,
+                redCards: p.redCards
+            })),
+            playersB: teams.B.players.map(p => ({
+                name: p.name,
+                goals: p.goals,
+                yellowCards: p.yellowCards,
+                redCards: p.redCards
+            }))
+        };
+
+        try {
+            const response = await fetch(scriptUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                alert("تم حفظ البيانات في Google Sheets بنجاح!");
+            } else {
+                alert("حدث خطأ أثناء الحفظ: " + (result.error || ''));
+            }
+        } catch (error) {
+            alert("فشل الاتصال: " + error.message);
+        }
+    }
+
+    // أضف زر الحفظ في واجهة المستخدم
+    const exportBtn = document.createElement('button');
+    exportBtn.textContent = 'حفظ في Google Sheets';
+    exportBtn.className = 'btn btn-success';
+    exportBtn.onclick = saveToGoogleSheets;
+    document.querySelector('.container').appendChild(exportBtn);
 
     // تهيئة التطبيق
     initializeTeamDropdowns();
