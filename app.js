@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     }
 
-
     // متغيرات التطبيق
     const teams = {};
     let timerInterval;
@@ -120,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         team: null,
         playerOutId: null
     };
+    let isMatchEnded = false;
 
     // عناصر واجهة المستخدم
     const timerDisplay = document.getElementById('timer');
@@ -169,6 +169,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // اختيار فريق
     function selectTeam(teamLetter, teamName) {
+        if (isMatchEnded) return;
+
         const dropdownBtn = document.getElementById(`teamDropdown${teamLetter}`);
         dropdownBtn.textContent = teamName;
 
@@ -198,8 +200,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="team-name">${teams.A.name}</div>
                         <div class="score" id="scoreA">0</div>
                         <div class="score-controls">
-                            <button class="btn btn-success add-goal" data-team="A">هدف +</button>
-                            <button class="btn btn-danger remove-goal" data-team="A">هدف -</button>
+                            <button class="btn btn-success add-goal" data-team="A" ${isMatchEnded ? 'disabled' : ''}>هدف +</button>
+                            <button class="btn btn-danger remove-goal" data-team="A" ${isMatchEnded ? 'disabled' : ''}>هدف -</button>
                         </div>
                         <div class="players-list" id="playersA"></div>
                     </div>
@@ -209,8 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="team-name">${teams.B.name}</div>
                         <div class="score" id="scoreB">0</div>
                         <div class="score-controls">
-                            <button class="btn btn-success add-goal" data-team="B">هدف +</button>
-                            <button class="btn btn-danger remove-goal" data-team="B">هدف -</button>
+                            <button class="btn btn-success add-goal" data-team="B" ${isMatchEnded ? 'disabled' : ''}>هدف +</button>
+                            <button class="btn btn-danger remove-goal" data-team="B" ${isMatchEnded ? 'disabled' : ''}>هدف -</button>
                         </div>
                         <div class="players-list" id="playersB"></div>
                     </div>
@@ -224,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // إضافة مستمعي الأحداث
         document.querySelectorAll('.add-goal').forEach(btn => {
             btn.addEventListener('click', function () {
+                if (isMatchEnded) return;
                 const team = this.dataset.team;
                 addTeamGoal(team);
                 addEvent(`هدف لـ ${teams[team].name}`, 'goal');
@@ -232,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelectorAll('.remove-goal').forEach(btn => {
             btn.addEventListener('click', function () {
+                if (isMatchEnded) return;
                 const team = this.dataset.team;
                 removeTeamGoal(team);
                 addEvent(`تم إلغاء هدف لـ ${teams[team].name}`, 'goal');
@@ -257,19 +261,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     </span>
                 </div>
                 <div class="player-actions">
-                    <button class="btn btn-sm btn-success" data-action="goal">هدف</button>
-                    <button class="btn btn-sm btn-warning" data-action="yellow">إنذار</button>
-                    <button class="btn btn-sm btn-danger" data-action="red">طرد</button>
-                    <button class="btn btn-sm btn-secondary" data-action="sub">استبدال</button>
+                    <button class="btn btn-sm btn-success" data-action="goal" ${isMatchEnded ? 'disabled' : ''}>هدف</button>
+                    <button class="btn btn-sm btn-warning" data-action="yellow" ${isMatchEnded ? 'disabled' : ''}>إنذار</button>
+                    <button class="btn btn-sm btn-danger" data-action="red" ${isMatchEnded ? 'disabled' : ''}>طرد</button>
+                    <button class="btn btn-sm btn-secondary" data-action="sub" ${isMatchEnded ? 'disabled' : ''}>استبدال</button>
                 </div>
             `;
 
-            playerEl.querySelectorAll('.player-actions button').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    handlePlayerAction(team, player.id, btn.dataset.action);
+            if (!isMatchEnded) {
+                playerEl.querySelectorAll('.player-actions button').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handlePlayerAction(team, player.id, btn.dataset.action);
+                    });
                 });
-            });
+            }
 
             playersList.appendChild(playerEl);
         });
@@ -277,6 +283,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // معالجة أحداث اللاعبين
     function handlePlayerAction(team, playerId, action) {
+        if (isMatchEnded) return;
+
         const player = teams[team].players.find(p => p.id === playerId);
         if (!player) return;
 
@@ -308,6 +316,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // بدء عملية الاستبدال
     function initiateSubstitution(team, playerOutId) {
+        if (isMatchEnded) return;
+
         const playerOut = teams[team].players.find(p => p.id === playerOutId);
         if (!playerOut) return;
 
@@ -336,6 +346,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // تأكيد الاستبدال
     confirmSubstitutionBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
+
         const playerInId = parseInt(substituteSelect.value);
         if (!playerInId) return;
 
@@ -388,6 +400,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     startTimerBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
         if (!timerInterval) {
             timerInterval = setInterval(function () {
                 seconds++;
@@ -397,11 +410,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     stopTimerBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
         clearInterval(timerInterval);
         timerInterval = null;
     });
 
     resetTimerBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
         clearInterval(timerInterval);
         timerInterval = null;
         seconds = 0;
@@ -409,65 +424,55 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     halfTimeBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
         addEvent('نصف المباراة', 'half-time');
     });
 
     fullTimeBtn.addEventListener('click', function () {
+        if (isMatchEnded) return;
         addEvent('نهاية المباراة', 'full-time');
         clearInterval(timerInterval);
         timerInterval = null;
+        isMatchEnded = true;
+        disableAllControls();
+        enableSaveButton();
     });
-    function doGet(e) {
-        return HtmlService.createHtmlOutput("<h1>استقبال بيانات المباراة</h1>");
+
+    // تعطيل جميع عناصر التحكم
+    function disableAllControls() {
+        // تعطيل أزرار المؤقت
+        startTimerBtn.disabled = true;
+        stopTimerBtn.disabled = true;
+        resetTimerBtn.disabled = true;
+        halfTimeBtn.disabled = true;
+        fullTimeBtn.disabled = true;
+
+        // تعطيل أزرار الأهداف
+        document.querySelectorAll('.add-goal, .remove-goal').forEach(btn => {
+            btn.disabled = true;
+        });
+
+        // تعطيل أزرار اللاعبين
+        document.querySelectorAll('.player-actions button').forEach(btn => {
+            btn.disabled = true;
+        });
+
+        // تعطيل زر تأكيد الاستبدال إذا كان مفتوحًا
+        confirmSubstitutionBtn.disabled = true;
     }
 
-    function doPost(e) {
-        try {
-            const data = JSON.parse(e.postData.contents);
-            const ss = SpreadsheetApp.getActiveSpreadsheet();
-            const sheet = ss.getSheetByName("المباريات") || ss.insertSheet("المباريات");
-
-            // ترتيب البيانات
-            const matchData = [
-                new Date(),
-                data.teamA.name,
-                data.teamA.score,
-                data.teamB.name,
-                data.teamB.score,
-                JSON.stringify(data.events),
-                JSON.stringify(data.playersA),
-                JSON.stringify(data.playersB)
-            ];
-
-            // إضافة العناوين إذا كانت الصفحة فارغة
-            if (sheet.getLastRow() === 0) {
-                const headers = [
-                    "التاريخ",
-                    "الفريق الأول",
-                    "الأهداف",
-                    "الفريق الثاني",
-                    "الأهداف",
-                    "الأحداث",
-                    "لاعبين الفريق الأول",
-                    "لاعبين الفريق الثاني"
-                ];
-                sheet.appendRow(headers);
-            }
-
-            sheet.appendRow(matchData);
-
-            return ContentService.createTextOutput(JSON.stringify({ success: true }))
-                .setMimeType(ContentService.MimeType.JSON);
-        } catch (err) {
-            return ContentService.createTextOutput(JSON.stringify({ success: false, error: err.message }))
-                .setMimeType(ContentService.MimeType.JSON);
+    // تمكين زر الحفظ فقط
+    function enableSaveButton() {
+        const saveBtn = document.getElementById('saveResultsBtn');
+        if (saveBtn) {
+            saveBtn.disabled = false;
         }
     }
 
-    function getScriptUrl() {
-        return ScriptApp.getService().getUrl();
-    }
+    // دالة لحفظ النتائج في Google Sheets
     async function saveToGoogleSheets() {
+        if (!isMatchEnded) return;
+
         const scriptUrl = "YOUR_SCRIPT_URL"; // استبدل برابط النشر
 
         const data = {
@@ -519,8 +524,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // أضف زر الحفظ في واجهة المستخدم
     const exportBtn = document.createElement('button');
-    exportBtn.textContent = 'حفظ في Google Sheets';
+    exportBtn.id = 'saveResultsBtn';
+    exportBtn.textContent = 'حفظ النتائج في Google Sheets';
     exportBtn.className = 'btn btn-success';
+    exportBtn.disabled = true;
     exportBtn.onclick = saveToGoogleSheets;
     document.querySelector('.container').appendChild(exportBtn);
 
