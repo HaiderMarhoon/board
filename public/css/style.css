@@ -1,0 +1,233 @@
+body {
+    font-family: 'Tahoma', Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding-bottom: 50px;
+}
+
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.timer-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.timer {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-display {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.team-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.score {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.score-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.players-list {
+    margin-top: 20px;
+}
+
+.player {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #0d6efd;
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-name {
+    font-weight: bold;
+    display: block;
+}
+
+.player-stats {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.player-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.events-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.event {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #6c757d;
+}
+
+.event.goal {
+    border-left-color: #198754;
+    background-color: #e6f7ee;
+}
+
+.event.yellow {
+    border-left-color: #ffc107;
+    background-color: #fff8e6;
+}
+
+.event.red {
+    border-left-color: #dc3545;
+    background-color: #fce8ea;
+}
+
+.event.substitution {
+    border-left-color: #0dcaf0;
+    background-color: #e6f7fc;
+}
+
+.event.half-time, .event.full-time {
+    border-left-color: #6610f2;
+    background-color: #f0e6ff;
+    font-weight: bold;
+}
+
+.event-time {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* RTL specific styles */
+[dir="rtl"] .player {
+    border-left: none;
+    border-right: 4px solid #0d6efd;
+}
+
+[dir="rtl"] .event {
+    border-left: none;
+    border-right: 4px solid #6c757d;
+}
+
+[dir="rtl"] .event.goal {
+    border-right-color: #198754;
+}
+
+[dir="rtl"] .event.yellow {
+    border-right-color: #ffc107;
+}
+
+[dir="rtl"] .event.red {
+    border-right-color: #dc3545;
+}
+
+[dir="rtl"] .event.substitution {
+    border-right-color: #0dcaf0;
+}
+
+[dir="rtl"] .event.half-time, 
+[dir="rtl"] .event.full-time {
+    border-right-color: #6610f2;
+}
+
+[dir="rtl"] .event-time {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+/* Navigation styles */
+.navbar {
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    padding: 8px 15px;
+}
+/* Delete button styling */
+.delete-match {
+  margin-right: 5px;
+}
+
+/* Responsive actions column */
+@media (max-width: 768px) {
+  .delete-match, .btn-view {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timer {
+        font-size: 2rem;
+    }
+    
+    .team-name {
+        font-size: 1.2rem;
+    }
+    
+    .score {
+        font-size: 2rem;
+    }
+    
+    .player {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .player-actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .player-actions .btn {
+        flex: 1;
+        margin: 2px;
+    }
+}

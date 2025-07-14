@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم حكم كرة القدم</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">لوحة تحكم حكم كرة القدم</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/matches">المباريات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/players">اللاعبين</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stats">الإحصائيات</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="header text-center mb-4">
+            <h1>لوحة تحكم حكم كرة القدم</h1>
+        </div>
+
+        <div class="timer-container card mb-4">
+            <div class="card-body">
+                <div class="timer text-center display-4 mb-3" id="timer">00:00</div>
+                <div class="timer-controls text-center">
+                    <button id="startTimer" class="btn btn-primary mx-2">بدء</button>
+                    <button id="stopTimer" class="btn btn-danger mx-2">إيقاف</button>
+                    <button id="resetTimer" class="btn btn-secondary mx-2">إعادة تعيين</button>
+                    <button id="halfTime" class="btn btn-warning mx-2">نصف المباراة</button>
+                    <button id="fullTime" class="btn btn-dark mx-2">نهاية المباراة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-selection card mb-4">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-3">اختيار الفرق</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dropdown mb-3">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="teamDropdownA"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                اختر الفريق الأول
+                            </button>
+                            <ul class="dropdown-menu w-100" id="teamListA" aria-labelledby="teamDropdownA">
+                                <!-- سيتم ملؤها بواسطة JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dropdown mb-3">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="teamDropdownB"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                اختر الفريق الثاني
+                            </button>
+                            <ul class="dropdown-menu w-100" id="teamListB" aria-labelledby="teamDropdownB">
+                                <!-- سيتم ملؤها بواسطة JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="selectedTeamsContainer" class="mt-4" style="display: none;">
+            <!-- سيتم عرض الفرق المختارة هنا -->
+        </div>
+
+        <div class="match-events card mt-4">
+            <div class="card-body">
+                <h3 class="card-title">أحداث المباراة</h3>
+                <div class="events-list" id="eventsList">
+                    <!-- Events will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal لاختيار البديل -->
+    <div class="modal fade" id="substitutionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">اختيار لاعب بديل</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>اللاعب الذي سيخرج: <span id="playerOutName"></span></p>
+                    <div class="mb-3">
+                        <label for="substituteSelect" class="form-label">اختر اللاعب البديل:</label>
+                        <select class="form-select" id="substituteSelect"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-primary" id="confirmSubstitution">تأكيد الاستبدال</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

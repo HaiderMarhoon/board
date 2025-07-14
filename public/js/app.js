@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     // بيانات الفرق واللاعبين
     const allTeams = {
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { id: 8, name: "منتظر ", goals: 0, yellowCards: 0, redCards: 0 },
             { id: 9, name: "حسون", goals: 0, yellowCards: 0, redCards: 0 },
         ]
-    }
+    };
 
     // متغيرات التطبيق
     const teams = {};
@@ -326,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // تعبئة قائمة البدلاء
         substituteSelect.innerHTML = '';
-        const substitutes = teams[team].players.filter(p => p.id > 11 && p.id !== playerOutId);
+        const substitutes = teams[team].players.filter(p => p.id > 0 && p.id !== playerOutId);
 
         if (substitutes.length === 0) {
             substituteSelect.innerHTML = '<option value="">لا يوجد بدلاء متاحين</option>';
@@ -461,75 +462,85 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmSubstitutionBtn.disabled = true;
     }
 
-    // تمكين زر الحفظ فقط
-    function enableSaveButton() {
+    async function saveMatchData() {
         const saveBtn = document.getElementById('saveResultsBtn');
-        if (saveBtn) {
-            saveBtn.disabled = false;
-        }
-    }
-
-    // دالة لحفظ النتائج في Google Sheets
-    async function saveToGoogleSheets() {
-        if (!isMatchEnded) return;
-
-        const scriptUrl = "https://docs.google.com/spreadsheets/d/1s2fZTT7YPg1fM6jY7qfRza1sNj7kZcwpWJwQBto11_A/edit?usp=sharing"; // استبدل برابط النشر
-
-        const data = {
-            teamA: {
-                name: teams.A.name,
-                score: teams.A.score,
-            },
-            teamB: {
-                name: teams.B.name,
-                score: teams.B.score,
-            },
-            events: Array.from(document.querySelectorAll('#eventsList .event')).map(event => ({
-                time: event.querySelector('.event-time').textContent,
-                text: event.querySelector('.event-text').textContent
-            })),
-            playersA: teams.A.players.map(p => ({
-                name: p.name,
-                goals: p.goals,
-                yellowCards: p.yellowCards,
-                redCards: p.redCards
-            })),
-            playersB: teams.B.players.map(p => ({
-                name: p.name,
-                goals: p.goals,
-                yellowCards: p.yellowCards,
-                redCards: p.redCards
-            }))
-        };
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'جاري الحفظ...';
 
         try {
-            const response = await fetch(scriptUrl, {
+            // Prepare data
+            const matchData = {
+                teamA: teams.A,
+                teamB: teams.B,
+                events: Array.from(document.querySelectorAll('#eventsList .event')).map(el => ({
+                    time: el.querySelector('.event-time').textContent.replace(/[\[\]]/g, ''),
+                    text: el.querySelector('.event-text').textContent,
+                    type: el.className.replace('event ', '')
+                }))
+            };
+
+            // Send request
+            const response = await fetch('/api/matches', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept-Language': 'ar' // For Arabic error messages
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(matchData)
             });
 
             const result = await response.json();
-            if (result.success) {
-                alert("تم حفظ البيانات في Google Sheets بنجاح!");
-            } else {
-                alert("حدث خطأ أثناء الحفظ: " + (result.error || ''));
+
+            if (!response.ok) {
+                throw new Error(result.error || 'فشل الاتصال بالسيرفر');
             }
-        } catch (error) {
-            alert("فشل الاتصال: " + error.message);
+
+            // Success
+            alert('تم حفظ المباراة بنجاح ✓');
+            console.log('Saved match:', result.data);
+
+        } catch (err) {
+            console.error('Save failed:', err);
+
+            // Show detailed error
+            alert(`❌ خطأ في الحفظ:\n${err.message}\n\nيرجى المحاولة مرة أخرى`);
+
+            // For debugging
+            if (confirm('عرض تفاصيل الخطأ للمطور؟')) {
+                prompt('تفاصيل الخطأ (أرسل هذه للمطور):', err.stack || err.message);
+            }
+        } finally {
+            saveBtn.disabled = false;
+            saveBtn.textContent = 'حفظ النتائج';
         }
     }
 
+    // Attach event listener
+    document.getElementById('saveResultsBtn').addEventListener('click', saveMatchData);
+    // تمكين زر الحفظ فقط
+
+    function addEvent(text, type) {
+        // Normalize Arabic text
+        const normalizedText = text.normalize();
+
+        const eventEl = document.createElement('div');
+        eventEl.className = `event ${type}`;
+        eventEl.innerHTML = `
+    <span class="event-time">[${timerDisplay.textContent}]</span>
+    <span class="event-text">${normalizedText}</span>
+  `;
+
+        eventsList.prepend(eventEl);
+    }
+
     // أضف زر الحفظ في واجهة المستخدم
-    const exportBtn = document.createElement('button');
-    exportBtn.id = 'saveResultsBtn';
-    exportBtn.textContent = 'حفظ النتائج في Google Sheets';
-    exportBtn.className = 'btn btn-success';
-    exportBtn.disabled = true;
-    exportBtn.onclick = saveToGoogleSheets;
-    document.querySelector('.container').appendChild(exportBtn);
+    const saveBtn = document.createElement('button');
+    saveBtn.id = 'saveResultsBtn';
+    saveBtn.textContent = 'حفظ النتائج';
+    saveBtn.className = 'btn btn-success mt-3 w-100';
+    saveBtn.disabled = true;
+    saveBtn.onclick = saveToDatabase;
+    document.querySelector('.container').appendChild(saveBtn);
 
     // تهيئة التطبيق
     initializeTeamDropdowns();
