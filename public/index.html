@@ -231,33 +231,6 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/app.js?v=1.0.0"></script>
-
-        <!-- Debug Script -->
-        <script>
-            window.addEventListener("load", function () {
-                console.log("Page loaded");
-                console.log("Team dropdown A:", document.getElementById("teamDropdownA"));
-                console.log("Team dropdown B:", document.getElementById("teamDropdownB"));
-                console.log("Team list A:", document.getElementById("teamListA"));
-                console.log("Team list B:", document.getElementById("teamListB"));
-
-                // Check if Bootstrap is loaded
-                if (typeof bootstrap !== "undefined") {
-                    console.log("Bootstrap loaded successfully");
-                } else {
-                    console.error("Bootstrap not loaded!");
-                }
-
-                // Check dropdown functionality
-                setTimeout(() => {
-                    const teamListA = document.getElementById("teamListA");
-                    console.log("Team list A children:", teamListA.children.length);
-                    if (teamListA.children.length === 0) {
-                        console.error("No teams loaded in dropdown!");
-                    }
-                }, 1000);
-            });
-        </script>
+        <script src="js/app.js?v=1.0.1"></script>
     </body>
 </html>
