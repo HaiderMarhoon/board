@@ -1,3 +1,10 @@
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../public/build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/build', 'index.html'));
+  });
+}
 require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 // Debugging - add this right after dotenv config
 console.log('Environment Variables Loaded:');
