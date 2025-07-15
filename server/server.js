@@ -61,11 +61,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// Production static files (if you have a build process)
+// Production static files
 if (process.env.NODE_ENV === "production") {
-  // Only use this if you actually have a build folder
-  // app.use(express.static(path.join(__dirname, '../public/build')));
-
   // Catch-all route - must be AFTER all other routes
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));

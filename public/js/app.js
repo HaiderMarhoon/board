@@ -1,115 +1,558 @@
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     // بيانات الفرق واللاعبين
     const allTeams = {
-        'ذو الفقار': [
-            { id: 1, name: 'حسين بوحميد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: 'عبدالله عباس بوحميد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: ' عبدالله عبادي', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: ' احمد جمعه  ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: 'علي حامد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: 'محمد مهدي عيسى بوحميد ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: 'محمد رضا عيسى بوحميد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: 'رضا عباس', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: ' شهاب  ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: 'علي بوحميد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: 'عبدالكريم احمد ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: 'قمبر ميرز', goals: 0, yellowCards: 0, redCards: 0 },
+        "ذو الفقار": [
+            {
+                id: 1,
+                name: "حسين بوحميد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 2,
+                name: "عبدالله عباس بوحميد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: " عبدالله عبادي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: " احمد جمعه  ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 5, name: "علي حامد", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 6,
+                name: "محمد مهدي عيسى بوحميد ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "محمد رضا عيسى بوحميد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 8, name: "رضا عباس", goals: 0, yellowCards: 0, redCards: 0 },
+            { id: 9, name: " شهاب  ", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 10,
+                name: "علي بوحميد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "عبدالكريم احمد ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 12,
+                name: "قمبر ميرز",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        'المهدي المنتظر ': [
-            { id: 1, name: 'مهدي محمد خليل ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: 'علي جعفر راشد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: 'يوسف احمد محمد ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: ' محمد علي حسين   ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: 'يوسف احمد عبد الكريم', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: 'مصطفى محمد امين ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: 'عبد العزيز محمد جعفر', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: 'إبراهيم خليل إبراهيم ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: ' علي مجيد سعيد  ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: 'حسين علي عباس', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: 'حسين مجيد سعيد   ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: 'فارس علي حسين', goals: 0, yellowCards: 0, redCards: 0 },
+        "المهدي المنتظر ": [
+            {
+                id: 1,
+                name: "مهدي محمد خليل ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 2,
+                name: "علي جعفر راشد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: "يوسف احمد محمد ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: " محمد علي حسين   ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 5,
+                name: "يوسف احمد عبد الكريم",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 6,
+                name: "مصطفى محمد امين ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "عبد العزيز محمد جعفر",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 8,
+                name: "إبراهيم خليل إبراهيم ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 9,
+                name: " علي مجيد سعيد  ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 10,
+                name: "حسين علي عباس",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "حسين مجيد سعيد   ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 12,
+                name: "فارس علي حسين",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        'اسد الله الغالب': [
-            { id: 1, name: 'حسن شاكر', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: 'هشام هاني', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: '  قاسم ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: ' احمد محمد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: 'علي عباس', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: 'عبدالله عيسى', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: 'محمد عباس', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: 'مجتبى ابراهيم', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: 'حسن علي ', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: 'حسين جمعة', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: 'محمد جعفر', goals: 0, yellowCards: 0, redCards: 0 },
+        "اسد الله الغالب": [
+            { id: 1, name: "حسن شاكر", goals: 0, yellowCards: 0, redCards: 0 },
+            { id: 2, name: "هشام هاني", goals: 0, yellowCards: 0, redCards: 0 },
+            { id: 3, name: "  قاسم ", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 4,
+                name: " احمد محمد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 5, name: "علي عباس", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 6,
+                name: "عبدالله عيسى",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 7, name: "محمد عباس", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 8,
+                name: "مجتبى ابراهيم",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 9, name: "حسن علي ", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 10,
+                name: "حسين جمعة",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "محمد جعفر",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        'خيبر': [
-            { id: 1, name: 'حسن الموت', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: 'علي محمد جمعة', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: 'أحمد الرفاعي', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: 'طه مجيد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: 'رضا علي يوسف', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: 'عبدالله خلف', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: 'محمد ضياء احمد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: 'عبدالله عيسى صالح عيد', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: 'محمد علي عبد الله', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: 'عبد الله عبادي', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: 'محمود حسين حبيب الفردان', goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: 'رضا علي عبد الرضا', goals: 0, yellowCards: 0, redCards: 0 }
+        خيبر: [
+            { id: 1, name: "حسن الموت", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 2,
+                name: "علي محمد جمعة",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: "أحمد الرفاعي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            { id: 4, name: "طه مجيد", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 5,
+                name: "رضا علي يوسف",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 6,
+                name: "عبدالله خلف",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "محمد ضياء احمد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 8,
+                name: "عبدالله عيسى صالح عيد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 9,
+                name: "محمد علي عبد الله",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 10,
+                name: "عبد الله عبادي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "محمود حسين حبيب الفردان",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 12,
+                name: "رضا علي عبد الرضا",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        "المنتظر": [
-            { id: 1, name: "علي احمد عباس", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: "محمد عماد الشيخ", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: "عبدالله علي رمضان", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: "يوسف احمد مكي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: "عبدلله محمد علي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: "سيدهشام علي مجيد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: "سيد نزار محمد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: "احمد حسين أحمد عبادي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: "علي ياسر جمعه", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: "حسين احمد صالح عاشور", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: "مجتبى عبدالنبي الشيخ", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: "علي حسن عبادي", goals: 0, yellowCards: 0, redCards: 0 }
+        المنتظر: [
+            {
+                id: 1,
+                name: "علي احمد عباس",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 2,
+                name: "محمد عماد الشيخ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: "عبدالله علي رمضان",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: "يوسف احمد مكي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 5,
+                name: "عبدلله محمد علي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 6,
+                name: "سيدهشام علي مجيد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "سيد نزار محمد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 8,
+                name: "احمد حسين أحمد عبادي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 9,
+                name: "علي ياسر جمعه",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 10,
+                name: "حسين احمد صالح عاشور",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "مجتبى عبدالنبي الشيخ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 12,
+                name: "علي حسن عبادي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        "المختار": [
-            { id: 1, name: "سيد هادي عبدالله الوداعي", goals: 0, yellowCards: 0, redCards: 0 },
+        المختار: [
+            {
+                id: 1,
+                name: "سيد هادي عبدالله الوداعي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
             { id: 2, name: "علي حبيب", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: "علي عبدالواحد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: "أحمد محمد امين", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 3,
+                name: "علي عبدالواحد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: "أحمد محمد امين",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
             { id: 5, name: "حيدر فتحي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: "نواف عبدالنبي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: "جاسم محمد جعفر", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: "حسين علي نجف", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: "باسل عباس مهدي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: "محمد عباس عيد", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 6,
+                name: "نواف عبدالنبي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "جاسم محمد جعفر",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 8,
+                name: "حسين علي نجف",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 9,
+                name: "باسل عباس مهدي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 10,
+                name: "محمد عباس عيد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
             { id: 11, name: "شيخ جعفر", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: "حسن عبدالله اللمعي", goals: 0, yellowCards: 0, redCards: 0 }
+            {
+                id: 12,
+                name: "حسن عبدالله اللمعي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        "حامل_اللواء": [
-            { id: 1, name: "علي حسن إسماعيل", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: "حسين محمد عيد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: "علي حسين مكي", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: "سيد هاشم حمزة", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 5, name: "سيد هاشم ماجد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: "سيد محمد شبر", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 7, name: "حيدر قاسم منصور", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 8, name: "حسن عبدالواحد", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 9, name: "جواد عبدالله درويش", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 10, name: "عبدالله عباس خاتم", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 11, name: "سيد هادي حمزة", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 12, name: "كرار حيدر الكش", goals: 0, yellowCards: 0, redCards: 0 }
+        حامل_اللواء: [
+            {
+                id: 1,
+                name: "علي حسن إسماعيل",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 2,
+                name: "حسين محمد عيد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: "علي حسين مكي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: "سيد هاشم حمزة",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 5,
+                name: "سيد هاشم ماجد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 6,
+                name: "سيد محمد شبر",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 7,
+                name: "حيدر قاسم منصور",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 8,
+                name: "حسن عبدالواحد",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 9,
+                name: "جواد عبدالله درويش",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 10,
+                name: "عبدالله عباس خاتم",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 11,
+                name: "سيد هادي حمزة",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 12,
+                name: "كرار حيدر الكش",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
         ],
-        "سيف_الله": [
-            { id: 1, name: "محمد إبراهيم", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 2, name: "  محمد كاظم", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 3, name: "احمد هادي المدهون", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 4, name: "جواد المهدي", goals: 0, yellowCards: 0, redCards: 0 },
+        سيف_الله: [
+            {
+                id: 1,
+                name: "محمد إبراهيم",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 2,
+                name: "  محمد كاظم",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 3,
+                name: "احمد هادي المدهون",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
+            {
+                id: 4,
+                name: "جواد المهدي",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
             { id: 5, name: "علي عقيل", goals: 0, yellowCards: 0, redCards: 0 },
-            { id: 6, name: "ادم علي علي الشيخ", goals: 0, yellowCards: 0, redCards: 0 },
+            {
+                id: 6,
+                name: "ادم علي علي الشيخ",
+                goals: 0,
+                yellowCards: 0,
+                redCards: 0,
+            },
             { id: 7, name: "مازن خليل", goals: 0, yellowCards: 0, redCards: 0 },
             { id: 8, name: "منتظر ", goals: 0, yellowCards: 0, redCards: 0 },
             { id: 9, name: "حسون", goals: 0, yellowCards: 0, redCards: 0 },
-        ]
+        ],
     };
 
     // متغيرات التطبيق
@@ -118,54 +561,59 @@ document.addEventListener('DOMContentLoaded', function () {
     let seconds = 0;
     let currentSubstitution = {
         team: null,
-        playerOutId: null
+        playerOutId: null,
     };
     let isMatchEnded = false;
 
     // عناصر واجهة المستخدم
-    const timerDisplay = document.getElementById('timer');
-    const startTimerBtn = document.getElementById('startTimer');
-    const stopTimerBtn = document.getElementById('stopTimer');
-    const resetTimerBtn = document.getElementById('resetTimer');
-    const halfTimeBtn = document.getElementById('halfTime');
-    const fullTimeBtn = document.getElementById('fullTime');
-    const teamListA = document.getElementById('teamListA');
-    const teamListB = document.getElementById('teamListB');
-    const teamDropdownA = document.getElementById('teamDropdownA');
-    const teamDropdownB = document.getElementById('teamDropdownB');
-    const selectedTeamsContainer = document.getElementById('selectedTeamsContainer');
-    const eventsList = document.getElementById('eventsList');
-    const substitutionModal = new bootstrap.Modal(document.getElementById('substitutionModal'));
-    const substituteSelect = document.getElementById('substituteSelect');
-    const playerOutName = document.getElementById('playerOutName');
-    const confirmSubstitutionBtn = document.getElementById('confirmSubstitution');
+    const timerDisplay = document.getElementById("timer");
+    const startTimerBtn = document.getElementById("startTimer");
+    const stopTimerBtn = document.getElementById("stopTimer");
+    const resetTimerBtn = document.getElementById("resetTimer");
+    const halfTimeBtn = document.getElementById("halfTime");
+    const fullTimeBtn = document.getElementById("fullTime");
+    const teamListA = document.getElementById("teamListA");
+    const teamListB = document.getElementById("teamListB");
+    const teamDropdownA = document.getElementById("teamDropdownA");
+    const teamDropdownB = document.getElementById("teamDropdownB");
+    const selectedTeamsContainer = document.getElementById("selectedTeamsContainer");
+    const eventsList = document.getElementById("eventsList");
+    const substitutionModal = new bootstrap.Modal(document.getElementById("substitutionModal"));
+    const substituteSelect = document.getElementById("substituteSelect");
+    const playerOutName = document.getElementById("playerOutName");
+    const confirmSubstitutionBtn = document.getElementById("confirmSubstitution");
 
     // تهيئة القوائم المنسدلة
     function initializeTeamDropdowns() {
-        teamListA.innerHTML = '';
-        teamListB.innerHTML = '';
+        console.log("Initializing team dropdowns...");
+        teamListA.innerHTML = "";
+        teamListB.innerHTML = "";
 
-        Object.keys(allTeams).forEach(teamName => {
+        Object.keys(allTeams).forEach((teamName) => {
+            console.log("Adding team:", teamName);
+
             // للفريق الأول
-            const liA = document.createElement('li');
-            const aA = document.createElement('a');
-            aA.className = 'dropdown-item';
-            aA.href = '#';
+            const liA = document.createElement("li");
+            const aA = document.createElement("a");
+            aA.className = "dropdown-item";
+            aA.href = "#";
             aA.textContent = teamName;
-            aA.addEventListener('click', () => selectTeam('A', teamName));
+            aA.addEventListener("click", () => selectTeam("A", teamName));
             liA.appendChild(aA);
             teamListA.appendChild(liA);
 
             // للفريق الثاني
-            const liB = document.createElement('li');
-            const aB = document.createElement('a');
-            aB.className = 'dropdown-item';
-            aB.href = '#';
+            const liB = document.createElement("li");
+            const aB = document.createElement("a");
+            aB.className = "dropdown-item";
+            aB.href = "#";
             aB.textContent = teamName;
-            aB.addEventListener('click', () => selectTeam('B', teamName));
+            aB.addEventListener("click", () => selectTeam("B", teamName));
             liB.appendChild(aB);
             teamListB.appendChild(liB);
         });
+
+        console.log("Teams loaded:", Object.keys(allTeams).length);
     }
 
     // اختيار فريق
@@ -178,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function () {
         teams[teamLetter] = {
             name: teamName,
             score: 0,
-            players: JSON.parse(JSON.stringify(allTeams[teamName]))
+            players: JSON.parse(JSON.stringify(allTeams[teamName])),
         };
 
         checkTeamsSelected();
@@ -193,7 +641,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // عرض لوحة التحكم
     function showTeamsControlPanel() {
-        selectedTeamsContainer.style.display = 'block';
+        selectedTeamsContainer.style.display = "block";
         selectedTeamsContainer.innerHTML = `
             <div class="row">
                 <div class="col-md-6">
@@ -201,8 +649,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="team-name">${teams.A.name}</div>
                         <div class="score" id="scoreA">0</div>
                         <div class="score-controls">
-                            <button class="btn btn-success add-goal" data-team="A" ${isMatchEnded ? 'disabled' : ''}>هدف +</button>
-                            <button class="btn btn-danger remove-goal" data-team="A" ${isMatchEnded ? 'disabled' : ''}>هدف -</button>
+                            <button class="btn btn-success add-goal" data-team="A" ${isMatchEnded ? "disabled" : ""}>هدف +</button>
+                            <button class="btn btn-danger remove-goal" data-team="A" ${isMatchEnded ? "disabled" : ""}>هدف -</button>
                         </div>
                         <div class="players-list" id="playersA"></div>
                     </div>
@@ -212,8 +660,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="team-name">${teams.B.name}</div>
                         <div class="score" id="scoreB">0</div>
                         <div class="score-controls">
-                            <button class="btn btn-success add-goal" data-team="B" ${isMatchEnded ? 'disabled' : ''}>هدف +</button>
-                            <button class="btn btn-danger remove-goal" data-team="B" ${isMatchEnded ? 'disabled' : ''}>هدف -</button>
+                            <button class="btn btn-success add-goal" data-team="B" ${isMatchEnded ? "disabled" : ""}>هدف +</button>
+                            <button class="btn btn-danger remove-goal" data-team="B" ${isMatchEnded ? "disabled" : ""}>هدف -</button>
                         </div>
                         <div class="players-list" id="playersB"></div>
                     </div>
@@ -221,25 +669,25 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
 
-        renderPlayers('A');
-        renderPlayers('B');
+        renderPlayers("A");
+        renderPlayers("B");
 
         // إضافة مستمعي الأحداث
-        document.querySelectorAll('.add-goal').forEach(btn => {
-            btn.addEventListener('click', function () {
+        document.querySelectorAll(".add-goal").forEach((btn) => {
+            btn.addEventListener("click", function () {
                 if (isMatchEnded) return;
                 const team = this.dataset.team;
                 addTeamGoal(team);
-                addEvent(`هدف لـ ${teams[team].name}`, 'goal');
+                addEvent(`هدف لـ ${teams[team].name}`, "goal");
             });
         });
 
-        document.querySelectorAll('.remove-goal').forEach(btn => {
-            btn.addEventListener('click', function () {
+        document.querySelectorAll(".remove-goal").forEach((btn) => {
+            btn.addEventListener("click", function () {
                 if (isMatchEnded) return;
                 const team = this.dataset.team;
                 removeTeamGoal(team);
-                addEvent(`تم إلغاء هدف لـ ${teams[team].name}`, 'goal');
+                addEvent(`تم إلغاء هدف لـ ${teams[team].name}`, "goal");
             });
         });
     }
@@ -247,11 +695,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // عرض اللاعبين
     function renderPlayers(team) {
         const playersList = document.getElementById(`players${team}`);
-        playersList.innerHTML = '';
+        playersList.innerHTML = "";
 
-        teams[team].players.forEach(player => {
-            const playerEl = document.createElement('div');
-            playerEl.className = 'player';
+        teams[team].players.forEach((player) => {
+            const playerEl = document.createElement("div");
+            playerEl.className = "player";
             playerEl.dataset.playerId = player.id;
 
             playerEl.innerHTML = `
@@ -262,16 +710,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     </span>
                 </div>
                 <div class="player-actions">
-                    <button class="btn btn-sm btn-success" data-action="goal" ${isMatchEnded ? 'disabled' : ''}>هدف</button>
-                    <button class="btn btn-sm btn-warning" data-action="yellow" ${isMatchEnded ? 'disabled' : ''}>إنذار</button>
-                    <button class="btn btn-sm btn-danger" data-action="red" ${isMatchEnded ? 'disabled' : ''}>طرد</button>
-                    <button class="btn btn-sm btn-secondary" data-action="sub" ${isMatchEnded ? 'disabled' : ''}>استبدال</button>
+                    <button class="btn btn-sm btn-success" data-action="goal" ${isMatchEnded ? "disabled" : ""}>هدف</button>
+                    <button class="btn btn-sm btn-warning" data-action="yellow" ${isMatchEnded ? "disabled" : ""}>إنذار</button>
+                    <button class="btn btn-sm btn-danger" data-action="red" ${isMatchEnded ? "disabled" : ""}>طرد</button>
+                    <button class="btn btn-sm btn-secondary" data-action="sub" ${isMatchEnded ? "disabled" : ""}>استبدال</button>
                 </div>
             `;
 
             if (!isMatchEnded) {
-                playerEl.querySelectorAll('.player-actions button').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
+                playerEl.querySelectorAll(".player-actions button").forEach((btn) => {
+                    btn.addEventListener("click", (e) => {
                         e.stopPropagation();
                         handlePlayerAction(team, player.id, btn.dataset.action);
                     });
@@ -286,29 +734,29 @@ document.addEventListener('DOMContentLoaded', function () {
     function handlePlayerAction(team, playerId, action) {
         if (isMatchEnded) return;
 
-        const player = teams[team].players.find(p => p.id === playerId);
+        const player = teams[team].players.find((p) => p.id === playerId);
         if (!player) return;
 
         switch (action) {
-            case 'goal':
+            case "goal":
                 player.goals++;
                 addTeamGoal(team);
-                addEvent(`هدف للاعب ${player.name} (${teams[team].name})`, 'goal');
+                addEvent(`هدف للاعب ${player.name} (${teams[team].name})`, "goal");
                 break;
-            case 'yellow':
+            case "yellow":
                 player.yellowCards++;
                 if (player.yellowCards >= 2) {
                     player.redCards = 1;
-                    addEvent(`طرد للاعب ${player.name} (${teams[team].name}) بسبب إنذارين`, 'red');
+                    addEvent(`طرد للاعب ${player.name} (${teams[team].name}) بسبب إنذارين`, "red");
                 } else {
-                    addEvent(`إنذار للاعب ${player.name} (${teams[team].name})`, 'yellow');
+                    addEvent(`إنذار للاعب ${player.name} (${teams[team].name})`, "yellow");
                 }
                 break;
-            case 'red':
+            case "red":
                 player.redCards = 1;
-                addEvent(`طرد للاعب ${player.name} (${teams[team].name})`, 'red');
+                addEvent(`طرد للاعب ${player.name} (${teams[team].name})`, "red");
                 break;
-            case 'sub':
+            case "sub":
                 initiateSubstitution(team, playerId);
                 break;
         }
@@ -319,22 +767,22 @@ document.addEventListener('DOMContentLoaded', function () {
     function initiateSubstitution(team, playerOutId) {
         if (isMatchEnded) return;
 
-        const playerOut = teams[team].players.find(p => p.id === playerOutId);
+        const playerOut = teams[team].players.find((p) => p.id === playerOutId);
         if (!playerOut) return;
 
         currentSubstitution = { team, playerOutId };
         playerOutName.textContent = playerOut.name;
 
         // تعبئة قائمة البدلاء
-        substituteSelect.innerHTML = '';
-        const substitutes = teams[team].players.filter(p => p.id > 0 && p.id !== playerOutId);
+        substituteSelect.innerHTML = "";
+        const substitutes = teams[team].players.filter((p) => p.id > 0 && p.id !== playerOutId);
 
         if (substitutes.length === 0) {
             substituteSelect.innerHTML = '<option value="">لا يوجد بدلاء متاحين</option>';
             confirmSubstitutionBtn.disabled = true;
         } else {
-            substitutes.forEach(sub => {
-                const option = document.createElement('option');
+            substitutes.forEach((sub) => {
+                const option = document.createElement("option");
                 option.value = sub.id;
                 option.textContent = sub.name;
                 substituteSelect.appendChild(option);
@@ -346,18 +794,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // تأكيد الاستبدال
-    confirmSubstitutionBtn.addEventListener('click', function () {
+    confirmSubstitutionBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
 
         const playerInId = parseInt(substituteSelect.value);
         if (!playerInId) return;
 
         const { team, playerOutId } = currentSubstitution;
-        const playerOut = teams[team].players.find(p => p.id === playerOutId);
-        const playerIn = teams[team].players.find(p => p.id === playerInId);
+        const playerOut = teams[team].players.find((p) => p.id === playerOutId);
+        const playerIn = teams[team].players.find((p) => p.id === playerInId);
 
         if (playerOut && playerIn) {
-            addEvent(`استبدال: ${playerOut.name} يخرج و ${playerIn.name} يدخل (${teams[team].name})`, 'substitution');
+            addEvent(`استبدال: ${playerOut.name} يخرج و ${playerIn.name} يدخل (${teams[team].name})`, "substitution");
             substitutionModal.hide();
             renderPlayers(team);
         }
@@ -384,7 +832,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // إضافة حدث للمباراة
     function addEvent(text, type) {
-        const eventEl = document.createElement('div');
+        const eventEl = document.createElement("div");
         eventEl.className = `event ${type}`;
         eventEl.innerHTML = `
             <span class="event-time">[${timerDisplay.textContent}]</span>
@@ -397,10 +845,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateTimer() {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
-        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        timerDisplay.textContent = `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
     }
 
-    startTimerBtn.addEventListener('click', function () {
+    startTimerBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
         if (!timerInterval) {
             timerInterval = setInterval(function () {
@@ -410,13 +858,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    stopTimerBtn.addEventListener('click', function () {
+    stopTimerBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
         clearInterval(timerInterval);
         timerInterval = null;
     });
 
-    resetTimerBtn.addEventListener('click', function () {
+    resetTimerBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
         clearInterval(timerInterval);
         timerInterval = null;
@@ -424,14 +872,14 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTimer();
     });
 
-    halfTimeBtn.addEventListener('click', function () {
+    halfTimeBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
-        addEvent('نصف المباراة', 'half-time');
+        addEvent("نصف المباراة", "half-time");
     });
 
-    fullTimeBtn.addEventListener('click', function () {
+    fullTimeBtn.addEventListener("click", function () {
         if (isMatchEnded) return;
-        addEvent('نهاية المباراة', 'full-time');
+        addEvent("نهاية المباراة", "full-time");
         clearInterval(timerInterval);
         timerInterval = null;
         isMatchEnded = true;
@@ -449,12 +897,12 @@ document.addEventListener('DOMContentLoaded', function () {
         fullTimeBtn.disabled = true;
 
         // تعطيل أزرار الأهداف
-        document.querySelectorAll('.add-goal, .remove-goal').forEach(btn => {
+        document.querySelectorAll(".add-goal, .remove-goal").forEach((btn) => {
             btn.disabled = true;
         });
 
         // تعطيل أزرار اللاعبين
-        document.querySelectorAll('.player-actions button').forEach(btn => {
+        document.querySelectorAll(".player-actions button").forEach((btn) => {
             btn.disabled = true;
         });
 
@@ -462,86 +910,81 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmSubstitutionBtn.disabled = true;
     }
 
+    // تمكين زر الحفظ
+    function enableSaveButton() {
+        const saveBtn = document.getElementById("saveResultsBtn");
+        if (saveBtn) {
+            saveBtn.disabled = false;
+        }
+    }
+
+    // حفظ بيانات المباراة
     async function saveMatchData() {
-        const saveBtn = document.getElementById('saveResultsBtn');
+        const saveBtn = document.getElementById("saveResultsBtn");
         saveBtn.disabled = true;
-        saveBtn.textContent = 'جاري الحفظ...';
+        saveBtn.textContent = "جاري الحفظ...";
 
         try {
             // Prepare data
             const matchData = {
                 teamA: teams.A,
                 teamB: teams.B,
-                events: Array.from(document.querySelectorAll('#eventsList .event')).map(el => ({
-                    time: el.querySelector('.event-time').textContent.replace(/[\[\]]/g, ''),
-                    text: el.querySelector('.event-text').textContent,
-                    type: el.className.replace('event ', '')
-                }))
+                events: Array.from(document.querySelectorAll("#eventsList .event")).map((el) => ({
+                    time: el.querySelector(".event-time").textContent.replace(/[\[\]]/g, ""),
+                    text: el.querySelector(".event-text").textContent,
+                    type: el.className.replace("event ", ""),
+                })),
             };
 
             // Send request
-            const response = await fetch('/api/matches', {
-                method: 'POST',
+            const response = await fetch("/api/matches", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept-Language': 'ar' // For Arabic error messages
+                    "Content-Type": "application/json",
+                    "Accept-Language": "ar",
                 },
-                body: JSON.stringify(matchData)
+                body: JSON.stringify(matchData),
             });
 
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error(result.error || 'فشل الاتصال بالسيرفر');
+                throw new Error(result.error || "فشل الاتصال بالسيرفر");
             }
 
             // Success
-            alert('تم حفظ المباراة بنجاح ✓');
-            console.log('Saved match:', result.data);
-
+            alert("تم حفظ المباراة بنجاح ✓");
+            console.log("Saved match:", result.data);
         } catch (err) {
-            console.error('Save failed:', err);
-
-            // Show detailed error
+            console.error("Save failed:", err);
             alert(`❌ خطأ في الحفظ:\n${err.message}\n\nيرجى المحاولة مرة أخرى`);
-
-            // For debugging
-            if (confirm('عرض تفاصيل الخطأ للمطور؟')) {
-                prompt('تفاصيل الخطأ (أرسل هذه للمطور):', err.stack || err.message);
-            }
         } finally {
             saveBtn.disabled = false;
-            saveBtn.textContent = 'حفظ النتائج';
+            saveBtn.textContent = "حفظ النتائج";
         }
     }
 
-    // Attach event listener
-    document.getElementById('saveResultsBtn').addEventListener('click', saveMatchData);
-    // تمكين زر الحفظ فقط
+    // إنشاء زر الحفظ
+    function createSaveButton() {
+        // Check if button already exists
+        if (document.getElementById("saveResultsBtn")) return;
 
-    function addEvent(text, type) {
-        // Normalize Arabic text
-        const normalizedText = text.normalize();
+        const saveBtn = document.createElement("button");
+        saveBtn.id = "saveResultsBtn";
+        saveBtn.textContent = "حفظ النتائج";
+        saveBtn.className = "btn btn-success mt-3 w-100";
+        saveBtn.disabled = true;
+        saveBtn.onclick = saveMatchData;
 
-        const eventEl = document.createElement('div');
-        eventEl.className = `event ${type}`;
-        eventEl.innerHTML = `
-    <span class="event-time">[${timerDisplay.textContent}]</span>
-    <span class="event-text">${normalizedText}</span>
-  `;
-
-        eventsList.prepend(eventEl);
+        const container = document.querySelector(".container");
+        if (container) {
+            container.appendChild(saveBtn);
+        }
     }
 
-    // أضف زر الحفظ في واجهة المستخدم
-    const saveBtn = document.createElement('button');
-    saveBtn.id = 'saveResultsBtn';
-    saveBtn.textContent = 'حفظ النتائج';
-    saveBtn.className = 'btn btn-success mt-3 w-100';
-    saveBtn.disabled = true;
-    saveBtn.onclick = saveToDatabase;
-    document.querySelector('.container').appendChild(saveBtn);
-
     // تهيئة التطبيق
+    console.log("Starting app initialization...");
     initializeTeamDropdowns();
+    createSaveButton();
+    console.log("App initialized successfully");
 });
