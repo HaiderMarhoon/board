@@ -141,12 +141,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // تهيئة القوائم المنسدلة
     function initializeTeamDropdowns() {
-        console.log("Initializing team dropdowns...");
+        // console.log("Initializing team dropdowns...");
         teamListA.innerHTML = "";
         teamListB.innerHTML = "";
 
         Object.keys(allTeams).forEach((teamName) => {
-            console.log("Adding team:", teamName);
+            // console.log("Adding team:", teamName);
 
             // للفريق الأول
             const liA = document.createElement("li");
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
             teamListB.appendChild(liB);
         });
 
-        console.log("Teams loaded:", Object.keys(allTeams).length);
+        // console.log("Teams loaded:", Object.keys(allTeams).length);
     }
 
     // اختيار فريق
@@ -510,7 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Success
             alert("تم حفظ المباراة بنجاح ✓");
-            console.log("Saved match:", result.data);
+            // console.log("Saved match:", result.data);
         } catch (err) {
             console.error("Save failed:", err);
             alert(`❌ خطأ في الحفظ:\n${err.message}\n\nيرجى المحاولة مرة أخرى`);
@@ -539,8 +539,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // تهيئة التطبيق
-    console.log("Starting app initialization...");
+    // console.log("Starting app initialization...");
     initializeTeamDropdowns();
     createSaveButton();
-    console.log("App initialized successfully");
+    // console.log("App initialized successfully");
 });
