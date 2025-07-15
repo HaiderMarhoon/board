@@ -129,8 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const resetTimerBtn = document.getElementById('resetTimer');
     const halfTimeBtn = document.getElementById('halfTime');
     const fullTimeBtn = document.getElementById('fullTime');
-    const teamListA = document.getElementById('teamListA');
-    const teamListB = document.getElementById('teamListB');
     const teamDropdownA = document.getElementById('teamDropdownA');
     const teamDropdownB = document.getElementById('teamDropdownB');
     const selectedTeamsContainer = document.getElementById('selectedTeamsContainer');
@@ -139,33 +137,59 @@ document.addEventListener('DOMContentLoaded', function () {
     const substituteSelect = document.getElementById('substituteSelect');
     const playerOutName = document.getElementById('playerOutName');
     const confirmSubstitutionBtn = document.getElementById('confirmSubstitution');
+    // Initialize team dropdowns after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize Bootstrap dropdown components
+        const teamDropdownA = new bootstrap.Dropdown(document.getElementById('teamDropdownA'));
+        const teamDropdownB = new bootstrap.Dropdown(document.getElementById('teamDropdownB'));
 
+        // Populate dropdown menus
+        populateTeamDropdowns();
+    });
     // تهيئة القوائم المنسدلة
     function initializeTeamDropdowns() {
+        const teamListA = document.getElementById('teamListA');
+    const teamListB = document.getElementById('teamListB');
+        // Clear existing options
         teamListA.innerHTML = '';
         teamListB.innerHTML = '';
 
+        // Add teams to both dropdowns
         Object.keys(allTeams).forEach(teamName => {
-            // للفريق الأول
-            const liA = document.createElement('li');
-            const aA = document.createElement('a');
-            aA.className = 'dropdown-item';
-            aA.href = '#';
-            aA.textContent = teamName;
-            aA.addEventListener('click', () => selectTeam('A', teamName));
-            liA.appendChild(aA);
-            teamListA.appendChild(liA);
+            // For Team A dropdown
+            const itemA = document.createElement('li');
+            const linkA = document.createElement('a');
+            linkA.className = 'dropdown-item';
+            linkA.href = '#';
+            linkA.textContent = teamName;
+            linkA.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectTeam('A', teamName);
+            });
+            itemA.appendChild(linkA);
+            teamListA.appendChild(itemA);
 
-            // للفريق الثاني
-            const liB = document.createElement('li');
-            const aB = document.createElement('a');
-            aB.className = 'dropdown-item';
-            aB.href = '#';
-            aB.textContent = teamName;
-            aB.addEventListener('click', () => selectTeam('B', teamName));
-            liB.appendChild(aB);
-            teamListB.appendChild(liB);
+            // For Team B dropdown
+            const itemB = document.createElement('li');
+            const linkB = document.createElement('a');
+            linkB.className = 'dropdown-item';
+            linkB.href = '#';
+            linkB.textContent = teamName;
+            linkB.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectTeam('B', teamName);
+            });
+            itemB.appendChild(linkB);
+            teamListB.appendChild(itemB);
         });
+
+        // Initialize Bootstrap dropdowns
+        if (teamDropdownA && teamListA) {
+            new bootstrap.Dropdown(teamDropdownA);
+        }
+        if (teamDropdownB && teamListB) {
+            new bootstrap.Dropdown(teamDropdownB);
+        }
     }
 
     // اختيار فريق
@@ -173,15 +197,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isMatchEnded) return;
 
         const dropdownBtn = document.getElementById(`teamDropdown${teamLetter}`);
-        dropdownBtn.textContent = teamName;
-
-        teams[teamLetter] = {
-            name: teamName,
-            score: 0,
-            players: JSON.parse(JSON.stringify(allTeams[teamName]))
-        };
-
-        checkTeamsSelected();
+        if (dropdownBtn) {
+            dropdownBtn.textContent = teamName;
+            teams[teamLetter] = {
+                name: teamName,
+                score: 0,
+                players: JSON.parse(JSON.stringify(allTeams[teamName]))
+            };
+            checkTeamsSelected();
+        }
     }
 
     // التحقق من اختيار الفريقين
