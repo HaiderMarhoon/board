@@ -1,9 +1,18 @@
+// Add this AT THE VERY TOP of server.js
+const path = require('path');
+require('dotenv').config({ 
+  path: path.resolve(__dirname, '../.env'), // Absolute path
+  override: true // Override existing variables
+});
+
+// Debug: Check if loaded
+console.log('MONGODB_URI from .env:', process.env.MONGODB_URI || 'NOT FOUND!');
+console.log('Loading from:', path.resolve(__dirname, '../.env'));
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
-const path = require("path");
 const connectDB = require("./config/db");
 
 // Routes
